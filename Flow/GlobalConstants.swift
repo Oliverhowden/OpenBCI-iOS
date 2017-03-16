@@ -7,7 +7,7 @@
 //
 //Contains all the commands to control the OBCI board
 
-struct BoardCommands {
+struct GlobalConstants {
     enum obciGanglionPacket18Bit: Int {
         case auxByte = 20
         case byteId = 0
