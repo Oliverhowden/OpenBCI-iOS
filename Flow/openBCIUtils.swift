@@ -26,7 +26,7 @@ struct OpenBCIUtils{
                 ascPart += asc
                 hexPart = (hexPart + "                                                   ")
                 let indexStartOfHex = hexPart.index(hexPart.startIndex, offsetBy: 0)
-                let indexEndOfHex = hexPart.index(hexPart.startIndex, offsetBy: 3*17)
+                let indexEndOfHex = hexPart.index(hexPart.startIndex, offsetBy: 3 * 17)
                 let rangeOfHex = indexStartOfHex ..< indexEndOfHex
                 hexPart = hexPart.substring(with: rangeOfHex)
                 print(prefix + " " + hexPart + "|" + ascPart + "|")

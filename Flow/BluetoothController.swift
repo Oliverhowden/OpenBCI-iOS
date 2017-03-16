@@ -10,16 +10,15 @@ class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
     let simbleeUuidSend : CBUUID = CBUUID(string: "2D30C083-F39F-4CE6-923F-3484EA480596")
     let simbleeUuidDisconnect : CBUUID = CBUUID(string: "2D30C084-F39F-4CE6-923F-3484EA480596")
     let simbleeCBUUIDArray = [CBUUID(string: "FE84")]
+    var mainCharacteristic:CBCharacteristic? = nil
     
     func initialise() {
         manager = CBCentralManager(delegate: self, queue: nil) // self refers to class: viewcontroller
         scanBLEDevices()
-        
     }
     
     var peripherals:[CBPeripheral] = []
     // var parentView:MainViewController? = nil
-    
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
@@ -38,20 +37,17 @@ class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         //      decompressedDeltas = decompressDeltas18Bit(from: data)
         //      decompressedSamples = decompressSamples(receivedDeltas: decompressedDeltas)
     }
-
+    
     // MARK: BLE Scanning
     func scanBLEDevices() {
         manager?.scanForPeripherals(withServices: nil, options: nil)
         
         //stop scanning after 3 seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            self.stopScanForBLEDevices()
+            self.manager?.stopScan()
         }
     }
     
-    func stopScanForBLEDevices() {
-        manager?.stopScan()
-    }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         let device = (advertisementData as NSDictionary).object(forKey: CBAdvertisementDataLocalNameKey) as? NSString
@@ -75,8 +71,25 @@ class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
             } else {
                 print("what the fuck?")
             }
-            
             manager.connect(peripheral, options: nil)
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        if (service.uuid.uuidString == simbleeUuidConnect.uuidString) {
+            for characteristic in service.characteristics! {
+                switch (characteristic.uuid.uuidString){
+                    
+                case simbleeUuidSend.uuidString:
+                    mainCharacteristic = characteristic
+                    //Set Notify is useful to read incoming data async
+                    self.peripheral.setNotifyValue(true, for: characteristic)
+                    
+                case simbleeUuidReceive.uuidString:
+                    self.peripheral.setNotifyValue(true, for: characteristic)
+                default: break
+                }
+            }
         }
     }
     
@@ -88,25 +101,26 @@ class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
                 streamData(data: characteristic.value!)
             }
         }
-        
-        func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-            
-            //pass reference to connected peripheral to parent view
-            //   parentView?.mainPeripheral = peripheral
-            //peripheral.delegate = parentView
-            peripheral.discoverServices(nil)
-            
-            //set the manager's delegate view to parent so it can call relevant disconnect methods
-            //manager?.delegate = parentView
-
-            print("Connected to " +  peripheral.name!)
-        }
-        
-        func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-            print(error!)
-        }
-        
     }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         
+        //pass reference to connected peripheral to parent view
+        //   parentView?.mainPeripheral = peripheral
+        //peripheral.delegate = parentView
+        peripheral.discoverServices(nil)
+        
+        //set the manager's delegate view to parent so it can call relevant disconnect methods
+        //manager?.delegate = parentView
+        
+        print("Connected to " +  peripheral.name!)
+    }
+    
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print(error!)
+    }
+    
 }
+
+
 

@@ -40,8 +40,6 @@ struct Output {
     var impedanceValue: Int
 }
 
-
-
 struct DataHandler {
     var options = Options()
     //    /** Private Properties (keep alphabetical) */

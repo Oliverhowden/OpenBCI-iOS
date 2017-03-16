@@ -13,7 +13,6 @@ let accel = false;
 
 class Ganglion {
     
-    
     init() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.newSampleReceived(_:)), name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.newMessageReceived(_:)), name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil)
