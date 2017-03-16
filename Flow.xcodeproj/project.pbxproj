@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F61448F91E7A212C0052B025 /* RawDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61448F81E7A212C0052B025 /* RawDataHandler.swift */; };
+		F61448FB1E7A22CE0052B025 /* openBCIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61448FA1E7A22CE0052B025 /* openBCIUtils.swift */; };
 		F67234CF1E78AB7600E138B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67234CE1E78AB7600E138B5 /* AppDelegate.swift */; };
 		F67234D11E78AB7600E138B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67234D01E78AB7600E138B5 /* ViewController.swift */; };
 		F67234D41E78AB7600E138B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F67234D21E78AB7600E138B5 /* Main.storyboard */; };
 		F67234D61E78AB7600E138B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F67234D51E78AB7600E138B5 /* Assets.xcassets */; };
 		F67234D91E78AB7600E138B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F67234D71E78AB7600E138B5 /* LaunchScreen.storyboard */; };
+		F67234E11E78ADC600E138B5 /* BoardCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67234E01E78ADC600E138B5 /* BoardCommands.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F61448F81E7A212C0052B025 /* RawDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawDataHandler.swift; sourceTree = "<group>"; };
+		F61448FA1E7A22CE0052B025 /* openBCIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openBCIUtils.swift; sourceTree = "<group>"; };
 		F67234CB1E78AB7600E138B5 /* Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F67234CE1E78AB7600E138B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F67234D01E78AB7600E138B5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,7 @@
 		F67234D51E78AB7600E138B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F67234D81E78AB7600E138B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F67234DA1E78AB7600E138B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F67234E01E78ADC600E138B5 /* BoardCommands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardCommands.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,9 @@
 			children = (
 				F67234CE1E78AB7600E138B5 /* AppDelegate.swift */,
 				F67234D01E78AB7600E138B5 /* ViewController.swift */,
+				F61448F81E7A212C0052B025 /* RawDataHandler.swift */,
+				F61448FA1E7A22CE0052B025 /* openBCIUtils.swift */,
+				F67234E01E78ADC600E138B5 /* BoardCommands.swift */,
 				F67234D21E78AB7600E138B5 /* Main.storyboard */,
 				F67234D51E78AB7600E138B5 /* Assets.xcassets */,
 				F67234D71E78AB7600E138B5 /* LaunchScreen.storyboard */,
@@ -137,8 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F67234E11E78ADC600E138B5 /* BoardCommands.swift in Sources */,
+				F61448F91E7A212C0052B025 /* RawDataHandler.swift in Sources */,
 				F67234D11E78AB7600E138B5 /* ViewController.swift in Sources */,
 				F67234CF1E78AB7600E138B5 /* AppDelegate.swift in Sources */,
+				F61448FB1E7A22CE0052B025 /* openBCIUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +314,7 @@
 				F67234DF1E78AB7600E138B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
