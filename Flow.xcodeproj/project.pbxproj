@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F61448F91E7A212C0052B025 /* RawDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61448F81E7A212C0052B025 /* RawDataHandler.swift */; };
 		F61448FB1E7A22CE0052B025 /* openBCIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61448FA1E7A22CE0052B025 /* openBCIUtils.swift */; };
+		F61448FD1E7A98E00052B025 /* Ganglion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61448FC1E7A98E00052B025 /* Ganglion.swift */; };
 		F67234CF1E78AB7600E138B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67234CE1E78AB7600E138B5 /* AppDelegate.swift */; };
 		F67234D11E78AB7600E138B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67234D01E78AB7600E138B5 /* ViewController.swift */; };
 		F67234D41E78AB7600E138B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F67234D21E78AB7600E138B5 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		F61448F81E7A212C0052B025 /* RawDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawDataHandler.swift; sourceTree = "<group>"; };
 		F61448FA1E7A22CE0052B025 /* openBCIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = openBCIUtils.swift; sourceTree = "<group>"; };
+		F61448FC1E7A98E00052B025 /* Ganglion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ganglion.swift; sourceTree = "<group>"; };
 		F67234CB1E78AB7600E138B5 /* Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F67234CE1E78AB7600E138B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F67234D01E78AB7600E138B5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				F67234CE1E78AB7600E138B5 /* AppDelegate.swift */,
 				F67234D01E78AB7600E138B5 /* ViewController.swift */,
 				F61448F81E7A212C0052B025 /* RawDataHandler.swift */,
+				F61448FC1E7A98E00052B025 /* Ganglion.swift */,
 				F61448FA1E7A22CE0052B025 /* openBCIUtils.swift */,
 				F67234E01E78ADC600E138B5 /* GlobalConstants.swift */,
 				F67234D21E78AB7600E138B5 /* Main.storyboard */,
@@ -148,6 +151,7 @@
 			files = (
 				F67234E11E78ADC600E138B5 /* GlobalConstants.swift in Sources */,
 				F61448F91E7A212C0052B025 /* RawDataHandler.swift in Sources */,
+				F61448FD1E7A98E00052B025 /* Ganglion.swift in Sources */,
 				F67234D11E78AB7600E138B5 /* ViewController.swift in Sources */,
 				F67234CF1E78AB7600E138B5 /* AppDelegate.swift in Sources */,
 				F61448FB1E7A22CE0052B025 /* openBCIUtils.swift in Sources */,

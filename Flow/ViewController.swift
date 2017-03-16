@@ -8,26 +8,15 @@
 
 import UIKit
 
+
+
 class ViewController: UIViewController {
     var rdh = DataHandler()
     var ganglion = DataHandler()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(doThisWhenNotify),
-                                               name: NSNotification.Name(rawValue: myNotificationKey),
-                                               object: nil)
-    }
-    
-    
-    
-    func doThisWhenNotify() {
-        print("I've sent a spark!")
-    }
-    
-    
+
     
     
     
@@ -36,7 +25,5 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 }
 

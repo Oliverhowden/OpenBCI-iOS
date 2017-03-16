@@ -11,7 +11,7 @@ import Foundation
 var k = GlobalConstants()
 
 let openBCIUtils = OpenBCIUtils()
-let myNotificationKey = "com.bobthedeveloper.notificationKey"
+let myNotificationKey = "com.sigflow.notificationKey"
 
 struct Options {
     var debug: Bool = false
@@ -77,10 +77,9 @@ struct DataHandler {
         }
         
         
-    }
+
     
-    
-    public func printSampleToConsole(sample: Sample){
+     func printSampleToConsole(sample: Sample){
         print(sample.sampleNumber)
         for i in 0..<k.obciNumberOfChannelsGanglion{
             print("Channel \(i + 1): \(sample.channelData?[i]) Volts")
@@ -113,8 +112,8 @@ struct DataHandler {
         }
         let newSample = buildSample(sampleNumber: 0,rawData: decompressedSamples[0], accelData: nil)
         printSampleToConsole(sample: newSample)
-        let sendableSample = ["sample":newSample]
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newSample"), object: nil, userInfo: sendableSample)
+        let sendableSample = [k.obciEmitterSample:newSample]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample)
 
         //    this.emit(k.OBCIEmitterSample, newSample);
         
@@ -195,8 +194,8 @@ struct DataHandler {
     mutating func droppedPacket(_ droppedPacketNumber: Int){
         //  this.emit(k.OBCIEmitterDroppedPacket, [droppedPacketNumber]);
         
-        let sendableSample = ["droppedPacket":droppedPacketNumber]
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "droppedPacket"), object: nil, userInfo: sendableSample)
+        let sendableSample = [k.obciEmitterDroppedPacket:droppedPacketNumber]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterDroppedPacket), object: nil, userInfo: sendableSample)
         droppedPacketCounter += 1
     }
     
@@ -211,8 +210,8 @@ struct DataHandler {
         processMultiBytePacket(data: data)
         //this.emit(k.OBCIEmitterMessage, this._multiPacketBuffer);
         
-        let sendableSample = ["multiPacketBuffer":multiPacketBuffer]
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "multiPacketBuffer"), object: nil, userInfo: sendableSample)
+        let sendableSample = [k.obciEmitterMessage:multiPacketBuffer]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterMessage), object: nil, userInfo: sendableSample)
         
         destroyMultiPacketBuffer()
     }
@@ -264,11 +263,11 @@ struct DataHandler {
             printSampleToConsole(sample: sample1)
             //    this.emit(k.OBCIEmitterSample, sample1);
             
-            let sendableSample1 = ["sample":sample1]
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sample"), object: nil, userInfo: sendableSample1)
+            let sendableSample1 = [k.obciEmitterSample:sample1]
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample1)
             let sample2 = buildSample(sampleNumber: packetCounter * 2, rawData: decompressedSamples[2], accelData: accelArray)
-            let sendableSample2 = ["sample":sample2]
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sample"), object: nil, userInfo: sendableSample2)
+            let sendableSample2 = [k.obciEmitterSample:sample2]
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample2)
             
             printSampleToConsole(sample: sample2)
             //    this.emit(k.OBCIEmitterSample, sample2);
@@ -287,14 +286,14 @@ struct DataHandler {
             printSampleToConsole(sample: sample1)
             //    this.emit(k.OBCIEmitterSample, sample1);
             
-            let sendableSample1 = ["sample":sample1]
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sample"), object: nil, userInfo: sendableSample1)
+            let sendableSample1 = [k.obciEmitterSample:sample1]
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample1)
             
             
             let sample2 = buildSample(sampleNumber: (packetCounter - 100) * 2, rawData: decompressedSamples[2], accelData: nil)
             
-            let sendableSample2 = ["sample":sample2]
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sample"), object: nil, userInfo: sendableSample2)
+            let sendableSample2 = [k.obciEmitterSample:sample2]
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample2)
             
             //    this.emit(k.OBCIEmitterSample, sample2);
             printSampleToConsole(sample: sample2)
@@ -538,8 +537,8 @@ struct DataHandler {
                 slicedData[i - 1] = data[i]
             }
             output.impedanceValue = Int(String(data: slicedData, encoding: .utf8)!)!
-            let sendableSample = ["impedance":output]
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "impedance"), object: nil, userInfo: sendableSample)
+            let sendableSample = [k.obciEmitterImpedance:output]
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterImpedance), object: nil, userInfo: sendableSample)
             
             //  this.emit('impedance', output);
             
