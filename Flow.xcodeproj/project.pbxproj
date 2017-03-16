@@ -16,6 +16,7 @@
 		F67234D91E78AB7600E138B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F67234D71E78AB7600E138B5 /* LaunchScreen.storyboard */; };
 		F67234E11E78ADC600E138B5 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67234E01E78ADC600E138B5 /* GlobalConstants.swift */; };
 		F6C2C5A41E7AA22E00366BDD /* openBCIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61448FA1E7A22CE0052B025 /* openBCIUtils.swift */; };
+		F6C2C5A61E7AA4AC00366BDD /* BluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C5A51E7AA4AC00366BDD /* BluetoothController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F67234D81E78AB7600E138B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F67234DA1E78AB7600E138B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F67234E01E78ADC600E138B5 /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		F6C2C5A51E7AA4AC00366BDD /* BluetoothController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				F67234CE1E78AB7600E138B5 /* AppDelegate.swift */,
 				F67234D01E78AB7600E138B5 /* ViewController.swift */,
+				F6C2C5A51E7AA4AC00366BDD /* BluetoothController.swift */,
 				F61448F81E7A212C0052B025 /* RawDataHandler.swift */,
 				F61448FC1E7A98E00052B025 /* Ganglion.swift */,
 				F61448FA1E7A22CE0052B025 /* openBCIUtils.swift */,
@@ -153,6 +156,7 @@
 				F61448F91E7A212C0052B025 /* RawDataHandler.swift in Sources */,
 				F6C2C5A41E7AA22E00366BDD /* openBCIUtils.swift in Sources */,
 				F61448FD1E7A98E00052B025 /* Ganglion.swift in Sources */,
+				F6C2C5A61E7AA4AC00366BDD /* BluetoothController.swift in Sources */,
 				F67234D11E78AB7600E138B5 /* ViewController.swift in Sources */,
 				F67234CF1E78AB7600E138B5 /* AppDelegate.swift in Sources */,
 			);

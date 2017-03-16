@@ -11,12 +11,12 @@ import UIKit
 
 
 class ViewController: UIViewController {
-    var rdh = DataHandler()
     var ganglion = DataHandler()
+    var simblee = BluetoothController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        simblee.initialise()
     
     }
     

@@ -14,12 +14,11 @@ let accel = false;
 class Ganglion {
     
     
-    func initialise() {
+    init() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.newSampleReceived(_:)), name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.newMessageReceived(_:)), name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.newImpedanceReceived(_:)), name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.newDroppedPacket(_:)), name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil)
-        
     }
     
     
