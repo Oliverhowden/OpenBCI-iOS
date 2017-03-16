@@ -70,16 +70,16 @@ struct DataHandler {
     //    private var ganglionPeripheralArray = []
     //    private var previousPeripheralArray = []
     //    private var manualDisconnect = false
+    //
+    //    init() {
+    //        for i in 0..<3{
+    //            decompressedSamples[i] = [0, 0, 0, 0]
+    //        }
     
-    init() {
-        for i in 0..<3{
-            decompressedSamples[i] = [0, 0, 0, 0]
-        }
-        
-        
-
     
-     func printSampleToConsole(sample: Sample){
+    
+    
+    func printSampleToConsole(sample: Sample){
         print(sample.sampleNumber)
         for i in 0..<k.obciNumberOfChannelsGanglion{
             print("Channel \(i + 1): \(sample.channelData?[i]) Volts")
@@ -114,7 +114,7 @@ struct DataHandler {
         printSampleToConsole(sample: newSample)
         let sendableSample = [k.obciEmitterSample:newSample]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample)
-
+        
         //    this.emit(k.OBCIEmitterSample, newSample);
         
     }
@@ -394,7 +394,7 @@ struct DataHandler {
         //Write this value to the BLE characteristic
         //update notify characteristic etc
         
-       // let dataToSend = command.data(using: String.Encoding.utf8)
+        // let dataToSend = command.data(using: String.Encoding.utf8)
         //if (motherView.mainPeripheral != nil) {
         //if (dataToSend != nil) {
         //      motherView.mainPeripheral?.writeValue(dataToSend!, for: motherView.mainCharacteristic!, type: CBCharacteristicWriteType.withoutResponse)

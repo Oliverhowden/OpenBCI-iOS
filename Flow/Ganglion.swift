@@ -35,7 +35,7 @@ class Ganglion {
         }
     }
     
-    func newMessageReceived(_ notification: NSNotification) {
+    @objc func newMessageReceived(_ notification: NSNotification) {
         //        print("Message Received")
         //
         //        if let packetNumber = notification.userInfo?[k.obciEmitterMessage]  as? Data {
@@ -43,14 +43,14 @@ class Ganglion {
         //        }
     }
     
-    func newImpedanceReceived(_ notification: NSNotification) {
+    @objc func newImpedanceReceived(_ notification: NSNotification) {
         print("Impedance Received")
         
         if let output = notification.userInfo?[k.obciEmitterImpedance]  as? Output {
             print("Channel Number: \(output.channelNumber) Impedance: \(output.impedanceValue)")
         }
     }
-    func newDroppedPacket(_ notification: NSNotification) {
+    @objc func newDroppedPacket(_ notification: NSNotification) {
         print("new Dropped Packet")
         
         if let packetNumber = notification.userInfo?[k.obciEmitterMessage]  as? Int {
@@ -58,4 +58,4 @@ class Ganglion {
         }
     }
     
-}}
+}
