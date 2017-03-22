@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35AA41EF02FC10C96D5EEA8D /* Pods_Flow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989B9ABD920E6C8DE8A0A28F /* Pods_Flow.framework */; };
 		F61448F91E7A212C0052B025 /* RawDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61448F81E7A212C0052B025 /* RawDataHandler.swift */; };
 		F61448FD1E7A98E00052B025 /* Ganglion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61448FC1E7A98E00052B025 /* Ganglion.swift */; };
 		F67234CF1E78AB7600E138B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67234CE1E78AB7600E138B5 /* AppDelegate.swift */; };
@@ -16,10 +17,31 @@
 		F67234D91E78AB7600E138B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F67234D71E78AB7600E138B5 /* LaunchScreen.storyboard */; };
 		F67234E11E78ADC600E138B5 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67234E01E78ADC600E138B5 /* GlobalConstants.swift */; };
 		F6C2C5A41E7AA22E00366BDD /* OpenBCIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61448FA1E7A22CE0052B025 /* OpenBCIUtils.swift */; };
-		F6C2C5A61E7AA4AC00366BDD /* BluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C5A51E7AA4AC00366BDD /* BluetoothController.swift */; };
+		F6C2C5A61E7AA4AC00366BDD /* BluetoothHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C5A51E7AA4AC00366BDD /* BluetoothHandler.swift */; };
+		F6F4B4BF1E8234B5001E4C45 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6C152281E7B6F8000DA7563 /* Charts.framework */; };
+		F6F4B4C01E8234B9001E4C45 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6C152281E7B6F8000DA7563 /* Charts.framework */; };
+		F6F4B4C11E8234B9001E4C45 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6C152281E7B6F8000DA7563 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F6F4B4C61E824905001E4C45 /* LineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4B4C51E824905001E4C45 /* LineChartViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F6F4B4C21E8234B9001E4C45 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F6F4B4C11E8234B9001E4C45 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0F621184A37B8E1A784F1F20 /* Pods-Flow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flow.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flow/Pods-Flow.release.xcconfig"; sourceTree = "<group>"; };
+		926AB8EE1A624EB4079D6A8F /* Pods-Flow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flow/Pods-Flow.debug.xcconfig"; sourceTree = "<group>"; };
+		989B9ABD920E6C8DE8A0A28F /* Pods_Flow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F61448F81E7A212C0052B025 /* RawDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawDataHandler.swift; sourceTree = "<group>"; };
 		F61448FA1E7A22CE0052B025 /* OpenBCIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenBCIUtils.swift; sourceTree = "<group>"; };
 		F61448FC1E7A98E00052B025 /* Ganglion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ganglion.swift; sourceTree = "<group>"; };
@@ -31,7 +53,9 @@
 		F67234D81E78AB7600E138B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F67234DA1E78AB7600E138B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F67234E01E78ADC600E138B5 /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
-		F6C2C5A51E7AA4AC00366BDD /* BluetoothController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothController.swift; sourceTree = "<group>"; };
+		F6C152281E7B6F8000DA7563 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../Library/Developer/Xcode/DerivedData/Flow-aamgdurvyvybdjdgpjalspkugzjx/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
+		F6C2C5A51E7AA4AC00366BDD /* BluetoothHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothHandler.swift; sourceTree = "<group>"; };
+		F6F4B4C51E824905001E4C45 /* LineChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +63,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6F4B4C01E8234B9001E4C45 /* Charts.framework in Frameworks */,
+				F6F4B4BF1E8234B5001E4C45 /* Charts.framework in Frameworks */,
+				35AA41EF02FC10C96D5EEA8D /* Pods_Flow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62F581C1542EF6CC01A41912 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				926AB8EE1A624EB4079D6A8F /* Pods-Flow.debug.xcconfig */,
+				0F621184A37B8E1A784F1F20 /* Pods-Flow.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7E04C445FBFA76A876CF83FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F6C152281E7B6F8000DA7563 /* Charts.framework */,
+				989B9ABD920E6C8DE8A0A28F /* Pods_Flow.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F67234C21E78AB7600E138B5 = {
 			isa = PBXGroup;
 			children = (
 				F67234CD1E78AB7600E138B5 /* Flow */,
 				F67234CC1E78AB7600E138B5 /* Products */,
+				62F581C1542EF6CC01A41912 /* Pods */,
+				7E04C445FBFA76A876CF83FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,17 +111,18 @@
 		F67234CD1E78AB7600E138B5 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
-				F67234CE1E78AB7600E138B5 /* AppDelegate.swift */,
-				F67234D51E78AB7600E138B5 /* Assets.xcassets */,
-				F67234D71E78AB7600E138B5 /* LaunchScreen.storyboard */,
-				F67234DA1E78AB7600E138B5 /* Info.plist */,
 				F67234D01E78AB7600E138B5 /* ViewController.swift */,
-				F6C2C5A51E7AA4AC00366BDD /* BluetoothController.swift */,
+				F6F4B4C51E824905001E4C45 /* LineChartViewController.swift */,
+				F6C2C5A51E7AA4AC00366BDD /* BluetoothHandler.swift */,
 				F61448F81E7A212C0052B025 /* RawDataHandler.swift */,
 				F61448FC1E7A98E00052B025 /* Ganglion.swift */,
 				F61448FA1E7A22CE0052B025 /* OpenBCIUtils.swift */,
 				F67234E01E78ADC600E138B5 /* GlobalConstants.swift */,
 				F67234D21E78AB7600E138B5 /* Main.storyboard */,
+				F67234CE1E78AB7600E138B5 /* AppDelegate.swift */,
+				F67234D51E78AB7600E138B5 /* Assets.xcassets */,
+				F67234D71E78AB7600E138B5 /* LaunchScreen.storyboard */,
+				F67234DA1E78AB7600E138B5 /* Info.plist */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -86,9 +134,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F67234DD1E78AB7600E138B5 /* Build configuration list for PBXNativeTarget "Flow" */;
 			buildPhases = (
+				AAACC83C77ED3294E2EEEFDF /* [CP] Check Pods Manifest.lock */,
 				F67234C71E78AB7600E138B5 /* Sources */,
 				F67234C81E78AB7600E138B5 /* Frameworks */,
 				F67234C91E78AB7600E138B5 /* Resources */,
+				3A4D910F1E02790C838F6B02 /* [CP] Embed Pods Frameworks */,
+				4AFEBB4AD6C17CE649A585B1 /* [CP] Copy Pods Resources */,
+				F6F4B4C21E8234B9001E4C45 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -147,6 +199,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3A4D910F1E02790C838F6B02 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flow/Pods-Flow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4AFEBB4AD6C17CE649A585B1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flow/Pods-Flow-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAACC83C77ED3294E2EEEFDF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F67234C71E78AB7600E138B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -156,7 +256,8 @@
 				F61448F91E7A212C0052B025 /* RawDataHandler.swift in Sources */,
 				F6C2C5A41E7AA22E00366BDD /* OpenBCIUtils.swift in Sources */,
 				F61448FD1E7A98E00052B025 /* Ganglion.swift in Sources */,
-				F6C2C5A61E7AA4AC00366BDD /* BluetoothController.swift in Sources */,
+				F6C2C5A61E7AA4AC00366BDD /* BluetoothHandler.swift in Sources */,
+				F6F4B4C61E824905001E4C45 /* LineChartViewController.swift in Sources */,
 				F67234D11E78AB7600E138B5 /* ViewController.swift in Sources */,
 				F67234CF1E78AB7600E138B5 /* AppDelegate.swift in Sources */,
 			);
@@ -279,6 +380,7 @@
 		};
 		F67234DE1E78AB7600E138B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 926AB8EE1A624EB4079D6A8F /* Pods-Flow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W3XRUDCFKD;
@@ -292,6 +394,7 @@
 		};
 		F67234DF1E78AB7600E138B5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F621184A37B8E1A784F1F20 /* Pods-Flow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W3XRUDCFKD;

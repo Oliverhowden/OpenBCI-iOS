@@ -8,8 +8,11 @@
 
 import Foundation
 
+
 let impedance = false;
 let accel = false;
+let vc = ViewController()
+
 
 class Ganglion {
     
@@ -29,7 +32,9 @@ class Ganglion {
             print(sample.sampleNumber)
             for i in 0..<k.obciNumberOfChannelsGanglion{
                 print("Channel \(i + 1): \(sample.channelData?[i]) Volts")
+                
             }
+            
         }
     }
     

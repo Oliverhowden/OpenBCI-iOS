@@ -9,9 +9,9 @@
 import Foundation
 
 var k = GlobalConstants()
-
 let openBCIUtils = OpenBCIUtils()
 let myNotificationKey = "com.sigflow.notificationKey"
+let bluetooth = BluetoothHandler()
 
 struct Options {
     var debug: Bool = false
@@ -31,7 +31,7 @@ struct Options {
 struct Sample {
     let sampleNumber: Int
     let timeStamp: Double
-    var channelData: [Int]?
+    var channelData: [Int32]?
     var accelData: [Double]?
 }
 
@@ -45,13 +45,12 @@ struct DataHandler {
     //    /** Private Properties (keep alphabetical) */
     private var accelArray:[Double] = [0, 0, 0]
     //    private var connected = false
-    private var decompressedSamples: [[Int]] = [[0],[0],[0]]
-    private var decompressedDeltas: [[Int]] = []
-    private var receivedDeltas: [[Int]] = []
+    private var decompressedSamples: [[Int32]] = [[0],[0],[0]]
+    private var decompressedDeltas: [[Int32]] = []
+    private var receivedDeltas: [[Int32]] = []
     
     private var droppedPacketCounter = 0
     private var firstPacket = true
-    //    private var lastDroppedPacket = nil
     private var lastPacket: Data?
     //    private var localName = nil
     private var multiPacketBuffer: Data?
@@ -69,13 +68,12 @@ struct DataHandler {
     //    private var previousPeripheralArray = []
     //    private var manualDisconnect = false
     //
-    //    init() {
-    //        for i in 0..<3{
-    //            decompressedSamples[i] = [0, 0, 0, 0]
-    //        }
     
-    
-    
+    init() {
+        for i in 0..<3{
+            decompressedSamples[i] = [0, 0, 0, 0]
+        }
+    }
     
     func printSampleToConsole(sample: Sample){
         print(sample.sampleNumber)
@@ -84,7 +82,7 @@ struct DataHandler {
         }
     }
     
-    func interpret24bitAsInt32(byteArray: Data, index: Int) -> Int {
+    func interpret24bitAsInt32(byteArray: Data, index: Int) -> Int32 {
         let i1 = UInt32((0xFF & byteArray[index])) << UInt32(16)
         let i2 = UInt32((0xFF & byteArray[index + 1])) << UInt32(8)
         let i3 = UInt32((0xFF & byteArray[index + 2]))
@@ -95,7 +93,7 @@ struct DataHandler {
         } else {
             newInt &= 0x00FFFFFF;
         }
-        return Int(newInt);
+        return Int32(newInt);
     }
     
     //Process an uncompressed packet of data
@@ -216,7 +214,9 @@ struct DataHandler {
     
     mutating func processMultiBytePacket(data: Data){
         if(multiPacketBuffer != nil){
+            
             var dataToAppend = Data()
+            
             for i in (GlobalConstants.obciGanglionPacket19Bit.dataStart.rawValue)...(GlobalConstants.obciGanglionPacket19Bit.dataStop.rawValue){
                 dataToAppend[i - 1] = data[i]
             }
@@ -226,6 +226,7 @@ struct DataHandler {
             multiPacketBuffer = Data()
             var dataToAppend = Data()
             var tempCounter = 0
+            
             for i in (GlobalConstants.obciGanglionPacket19Bit.dataStart.rawValue)...(GlobalConstants.obciGanglionPacket19Bit.dataStop.rawValue){
                 dataToAppend[tempCounter] = data[i]
                 tempCounter += 1
@@ -240,12 +241,15 @@ struct DataHandler {
         
         //Decompress buffer into array
         if (packetCounter <= GlobalConstants.obciGanglionByteId18Bit.max.rawValue){
+            
             var tempCounter = 0
             var slicedData = Data()
+            
             for i in (GlobalConstants.obciGanglionPacket18Bit.dataStart.rawValue)...(GlobalConstants.obciGanglionPacket18Bit.dataStop.rawValue){
                 slicedData[tempCounter] = data[i]
                 tempCounter += 1
             }
+            
             decompressSamples(decompressDeltas18Bit(from: slicedData))
             switch (packetCounter % 10) {
             case k.obciGanglionAccelAxisX:
@@ -257,12 +261,14 @@ struct DataHandler {
             default:
                 break
             }
+            
             let sample1 = buildSample(sampleNumber: packetCounter * 2 - 1, rawData: decompressedSamples[1], accelData: accelArray)
-            printSampleToConsole(sample: sample1)
+            //      printSampleToConsole(sample: sample1)
             //    this.emit(k.OBCIEmitterSample, sample1);
             
             let sendableSample1 = [k.obciEmitterSample:sample1]
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample1)
+            
             let sample2 = buildSample(sampleNumber: packetCounter * 2, rawData: decompressedSamples[2], accelData: accelArray)
             let sendableSample2 = [k.obciEmitterSample:sample2]
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample2)
@@ -325,21 +331,11 @@ struct DataHandler {
             default:
                 processOtherData(data: data)
             }
+            
         }
     }
     
-    
-    // Utilize `receivedDeltas` to get actual count values.
-    mutating func decompressSamples(receivedDeltas: [[Int]]){
-        for i in 1..<3{
-            for j in 0..<4 {
-                decompressedSamples[i][j] = decompressedSamples[i - 1][j] - receivedDeltas[i - 1][j]
-            }
-        }
-    }
-    
-    // Builds a sample object from an array and sample number.
-    func buildSample(sampleNumber: Int, rawData: [Int], accelData: [Double]?) -> Sample {
+    func buildSample(sampleNumber: Int, rawData: [Int32], accelData: [Double]?) -> Sample {
         var sample = Sample(sampleNumber: sampleNumber, timeStamp: Date().timeIntervalSince1970, channelData: nil, accelData: accelData)
         if options.sendCounts {
             sample.channelData = rawData
@@ -347,7 +343,7 @@ struct DataHandler {
         else {
             sample.channelData = []
             for j in 0..<k.obciNumberOfChannelsGanglion {
-                sample.channelData?.append(Int(Double(rawData[j]) * k.obciGanglionScaleFactorPerCountVolts))
+                sample.channelData?.append(Int32(Double(rawData[j]) * k.obciGanglionScaleFactorPerCountVolts))
                 
             }
         }
@@ -389,16 +385,12 @@ struct DataHandler {
     
     //Converts a string to buffer and sends it to the board
     func writeToBoard(command: String){
-        //Write this value to the BLE characteristic
-        //update notify characteristic etc
-        
-        // let dataToSend = command.data(using: String.Encoding.utf8)
-        //if (motherView.mainPeripheral != nil) {
-        //if (dataToSend != nil) {
-        //      motherView.mainPeripheral?.writeValue(dataToSend!, for: motherView.mainCharacteristic!, type: CBCharacteristicWriteType.withoutResponse)
-        //      }
-        //  }
+        let dataToSend = command.data(using: String.Encoding.utf8)
+        bluetooth.sendData(data: dataToSend!)
+        print("sent \(command) to board")
     }
+    
+    
     
     // Takes the board out of synthetic data generation mode. Must call streamStart still.
     func syntheticDisable(){
@@ -486,12 +478,6 @@ struct DataHandler {
         }
     }
     
-    func readInteger<T : Integer>(data : NSData, start : Int) -> T {
-        var d : T = 0
-        data.getBytes(&d, range: NSRange(location: start, length: MemoryLayout<T>.size))
-        return d
-    }
-    
     // Process and emit an impedance value
     func processImpedanceData(data: Data){
         if (options.debug){
@@ -544,47 +530,49 @@ struct DataHandler {
     }
     
     
-    func interpret16bitAsInt32(_ twoByteBuffer: [UInt8]) -> Int {
-        var prefix = 0;
+    func interpret16bitAsInt32(_ twoByteBuffer: [UInt8]) -> Float {
+        var prefix:Int32 = 0;
         
         if (twoByteBuffer[0] > 127) {
-            // console.log('\t\tNegative number')
+            print("negative number")
             prefix = 65535; // 0xFFFF
         }
-        let convertedNumber = (prefix << 16) | (Int(twoByteBuffer[0]) << 8) | Int(twoByteBuffer[1])
+        let convertedNumber = (prefix << Int32(16)) | (Int32(twoByteBuffer[0]) << Int32(8)) | Int32(twoByteBuffer[1])
         
-        return Int(convertedNumber)
+        return Float(convertedNumber)
     }
     
-    func convert18bitAsInt32(_ threeByteBuffer: [UInt8]) -> Int {
-        var prefix = 0;
+    func convert18bitAsInt32(_ threeByteBuffer: [UInt8]) -> Float {
+        var prefix:Int32 = 0;
         
         if (threeByteBuffer[2] & 0x01 > 0) {
-            // console.log('\t\tNegative number')
-            prefix = 0b11111111111111;
+            print("Negative number")
+            prefix = 0b11111111111111
             
         }
-        let convertedNumber = (prefix << 18) | (Int(threeByteBuffer[0]) << 16) | (Int(threeByteBuffer[1]) << 8) | Int(threeByteBuffer[2])
-        return Int(convertedNumber)
+        let convertedNumber = (prefix << Int32(18)) | (Int32(threeByteBuffer[0]) << Int32(16)) | (Int32(threeByteBuffer[1]) << Int32(8)) | Int32(threeByteBuffer[2])
+        return Float(convertedNumber)
     }
     
     
-    func convert19bitAsInt32(_ threeByteBuffer: [UInt8]) -> Int {
-        var prefix = 0;
+    func convert19bitAsInt32(_ threeByteBuffer: [UInt8]) -> Float {
+        var prefix:Int32 = 0
         
         if (threeByteBuffer[2] & 0x01 > 0) {
-            // console.log('\t\tNegative number')
-            prefix = 0b1111111111111;
+            prefix = 0b11111111111111
+            print("Negative")
         }
-        let convertedNumber = (prefix << 19) | (Int(threeByteBuffer[0]) << 16) | (Int(threeByteBuffer[1]) << 8) | Int(threeByteBuffer[2])
+        // let convertedNumber = (prefix << 19) | (Int(threeByteBuffer[0]) << 16) | (Int(threeByteBuffer[1]) << 8) | Int(threeByteBuffer[2])
         
-        return Int(convertedNumber)
+        return Float(prefix << Int32(19) | Int32(threeByteBuffer[0]) << Int32(16) | Int32(threeByteBuffer[1]) << 8 | Int32(threeByteBuffer[2]))
+        
+        // return Int(convertedNumber)
     }
     
     
-    func decompressDeltas18Bit(from buffer: Data) -> [[Int]] {
+    func decompressDeltas18Bit(from buffer: Data) -> [[Float]] {
         
-        var receivedDeltas = [[Int]]()
+        var receivedDeltas = [[Float]]()
         receivedDeltas = [[0, 0, 0, 0],
                           [0, 0, 0, 0]]
         
@@ -671,9 +659,9 @@ struct DataHandler {
         return receivedDeltas;
     }
     
-    func decompressDeltas19Bit(from buffer: Data) -> [[Int]] {
+    func decompressDeltas19Bit(from buffer: Data) -> [[Float]] {
         
-        var receivedDeltas = [[Int]]()
+        var receivedDeltas = [[Float]]()
         receivedDeltas = [[0, 0, 0, 0],
                           [0, 0, 0, 0]]
         
@@ -752,7 +740,7 @@ struct DataHandler {
         return receivedDeltas;
     }
     
-    mutating func decompressSamples(_ receivedSamples: [[Int]]) {
+    mutating func decompressSamples(_ receivedSamples: [[Float]]) {
         // add the delta to the previous value
         for i in 0..<3 {
             for j in 0..<4 {
