@@ -78,8 +78,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         
         if let sample = notification.userInfo?[k.obciEmitterSample]  as? Sample {
-            
-            var chartData = ChartDataEntry(x: Double(sample.sampleNumber), y:Double(sample.channelData![0]) )
+            let chartData = ChartDataEntry(x: Double(sample.sampleNumber), y:Double(sample.channelData![0]))            
             self.lineChartView.data?.addEntry(chartData, dataSetIndex: sample.sampleNumber)
       //      self.lineChartView.data?.addXValue(String(sample.sampleNumber))
             

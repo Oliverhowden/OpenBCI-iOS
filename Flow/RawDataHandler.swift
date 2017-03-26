@@ -293,7 +293,6 @@ struct DataHandler {
             let sendableSample1 = [k.obciEmitterSample:sample1]
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample1)
             
-            
             let sample2 = buildSample(sampleNumber: (packetCounter - 100) * 2, rawData: decompressedSamples[2], accelData: nil)
             
             let sendableSample2 = [k.obciEmitterSample:sample2]
@@ -331,7 +330,6 @@ struct DataHandler {
             default:
                 processOtherData(data: data)
             }
-            
         }
     }
     
