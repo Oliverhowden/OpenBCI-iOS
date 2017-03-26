@@ -108,8 +108,8 @@ struct DataHandler {
         }
         let newSample = buildSample(sampleNumber: 0,rawData: decompressedSamples[0], accelData: nil)
         printSampleToConsole(sample: newSample)
-        let sendableSample = [k.obciEmitterSample:newSample]
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample)
+       // let sendableSample = [k.obciEmitterSample:newSample]
+     //   NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample)
         
         //    this.emit(k.OBCIEmitterSample, newSample);
         
@@ -266,12 +266,12 @@ struct DataHandler {
             //      printSampleToConsole(sample: sample1)
             //    this.emit(k.OBCIEmitterSample, sample1);
             
-            let sendableSample1 = [k.obciEmitterSample:sample1]
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample1)
+            //let sendableSample1 = [k.obciEmitterSample:sample1]
+            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample1)
             
             let sample2 = buildSample(sampleNumber: packetCounter * 2, rawData: decompressedSamples[2], accelData: accelArray)
-            let sendableSample2 = [k.obciEmitterSample:sample2]
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample2)
+            //let sendableSample2 = [k.obciEmitterSample:sample2]
+           // NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableSample2)
             
             printSampleToConsole(sample: sample2)
             //    this.emit(k.OBCIEmitterSample, sample2);
@@ -345,6 +345,9 @@ struct DataHandler {
                 
             }
         }
+        
+        let sendableBuiltSample = [k.obciEmitterSample:sample]
+         NotificationCenter.default.post(name: NSNotification.Name(rawValue: k.obciEmitterSample), object: nil, userInfo: sendableBuiltSample)
         return sample
     }
     
